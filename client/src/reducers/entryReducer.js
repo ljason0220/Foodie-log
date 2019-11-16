@@ -1,29 +1,29 @@
-import { GET_ITEMS, ADD_ITEM, DELETE_ITEM, ITEMS_LOADING } from '../actions/types';
+import { GET_ENTRIES, ADD_ENTRY, DELETE_ENTRY, ENTRIES_LOADING } from '../actions/types';
 
 const initialState = {
-    items: [],
+    entries: [],
     loading: false
 }
 
 export default function(state = initialState, action) {
     switch(action.type) {
-        case GET_ITEMS: 
+        case GET_ENTRIES: 
             return {
                 ...state, 
-                items: action.payload,
+                entries: action.payload,
                 loading: false
             }
-        case DELETE_ITEM: 
+        case DELETE_ENTRY: 
             return {
                 ...state,
-                items: state.items.filter(item => item._id !== action.payload)
+                entries: state.entries.filter(entry => entry._id !== action.payload)
             }
-        case ADD_ITEM: 
+        case ADD_ENTRY: 
             return {
                 ...state,
-                items: [action.payload, ...state.items]
+                entries: [action.payload, ...state.entries]
             }
-        case ITEMS_LOADING:
+        case ENTRIES_LOADING:
             return {
                 ...state, 
                 loading: true

@@ -1,4 +1,4 @@
-export const GET_ITEMS = 'GET_ITEMS';
-export const ADD_ITEM = 'ADD_ITEM';
-export const DELETE_ITEM = 'DELETE_ITEM';
-export const ITEMS_LOADING = 'ITEMS_LOADING';
+export const GET_ENTRIES = 'GET_ENTRIES';
+export const ADD_ENTRY = 'ADD_ENTRY';
+export const DELETE_ENTRY = 'DELETE_ENTRY';
+export const ENTRIES_LOADING = 'ENTRIES_LOADING';

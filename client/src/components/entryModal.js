@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, Form, FormGroup, Label, Input } from 'reactstrap';
 import { connect } from 'react-redux';
-import { addItem } from '../actions/itemActions';
+import { addEntry } from '../actions/entryActions';
 
-class ItemModal extends Component {
+class EntryModal extends Component {
     state = {
         modal: false,
-        name: ''
+        entryId: '',
+        businessId: '',
+        userId: ''
     }
 
     toggle = () => {
@@ -22,11 +24,13 @@ class ItemModal extends Component {
     onSubmit = (e) => {
         e.preventDefault();
 
-        const newItem = {
-            name: this.state.name
+        const newEntry = {
+            entryId: this.state.entryId,
+            businessId: this.state.businessId,
+            userId: this.state.userId
         }
 
-        this.props.addItem(newItem);
+        this.props.addEntry(newEntry);
 
         this.toggle();
     }
@@ -38,7 +42,7 @@ class ItemModal extends Component {
                     color="dark"
                     style={{marginBottom: '2rem'}}
                     onClick={this.toggle}
-                >Add Item</Button>
+                >Add Entry</Button>
 
                 <Modal
                     isOpen={this.state.modal}
@@ -48,19 +52,19 @@ class ItemModal extends Component {
                     <ModalBody>
                         <Form onSubmit={this.onSubmit}>
                             <FormGroup>
-                                <Label for="item">Item</Label>
+                                <Label for="entry">Entry</Label>
                                 <Input 
                                     type="text"
-                                    name="name"
-                                    id="item"
-                                    placeholder="Add Item"
+                                    name="entryId"
+                                    id="entry"
+                                    placeholder="Add Entry"
                                     onChange={this.onChange}
                                 />
                                 <Button
                                     color="dark"
                                     style={{marginTop: '2rem'}}
                                     block
-                                >Add Item</Button>
+                                >Add Entry</Button>
                             </FormGroup>
                         </Form>
                     </ModalBody>
@@ -71,7 +75,7 @@ class ItemModal extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    item: state.item
+    entry: state.entry
 })
 
-export default connect(mapStateToProps, { addItem })(ItemModal);
+export default connect(mapStateToProps, { addEntry })(EntryModal);

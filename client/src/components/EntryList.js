@@ -2,27 +2,27 @@ import React, { Component } from 'react';
 import { Container, ListGroup, ListGroupItem, Button } from 'reactstrap';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { connect } from 'react-redux';
-import { getItems, deleteItem } from '../actions/itemActions';
+import { getEntries, deleteEntry } from '../actions/entryActions';
 import PropTypes from 'prop-types';
 
-class FoodList extends Component {
+class EntryList extends Component {
 
     componentDidMount() {
-        this.props.getItems();
+        this.props.getEntries();
     }
 
-    onDeleteClick = (id) => {
-        this.props.deleteItem(id);
+    onDeleteClick = (entryId) => {
+        this.props.deleteEntry(entryId);
     }
 
     render() {
-        const { items } = this.props.item;
+        const { entries } = this.props.entry;
 
         return(
             <Container>  
                 <ListGroup>
-                    <TransitionGroup className="food-list">
-                        {items.map(({ _id, name }) => (
+                    <TransitionGroup className="entry-list">
+                        {entries.map(({ _id, entryId }) => (
                             <CSSTransition key={_id} timeout={500} classNames="fade">
                                 <ListGroupItem>
                                     <Button 
@@ -32,7 +32,7 @@ class FoodList extends Component {
                                         onClick={this.onDeleteClick.bind(this, _id)}
                                         >
                                         &times;</Button>
-                                    {name}
+                                    {entryId}
                                 </ListGroupItem>
                             </CSSTransition>
                         ))}
@@ -43,13 +43,13 @@ class FoodList extends Component {
     }
 }
 
-FoodList.propTypes = {
-    getItems: PropTypes.func.isRequired,
-    item: PropTypes.object.isRequired
+EntryList.propTypes = {
+    getEntries: PropTypes.func.isRequired,
+    entry: PropTypes.object.isRequired
 }
 
 const mapStateToProps = (state) => ({
-    item: state.item
+    entry: state.entry
 });
 
-export default connect(mapStateToProps, { getItems, deleteItem })(FoodList);
+export default connect(mapStateToProps, { getEntries, deleteEntry })(EntryList);
