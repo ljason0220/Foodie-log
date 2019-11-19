@@ -1,25 +1,25 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
 const path = require('path');
-
-const entries = require('./routes/api/entries');
+const config = require('config');
 
 const app = express();
 
 //middleware
-app.use(bodyParser.json());
+app.use(express.json());
 
 //Mongo URI
-const db = require('./config/keys').mongoURI;
+const db = config.get('mongoURI');
 
 //Connect to Mongo
 mongoose
-    .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
+    .connect(db, { useNewUrlParser: true, useUnifiedTopology: true , useCreateIndex: true })
     .then(() => console.log('Connected to MongoDB'))
     .catch(err => console.log(err));
 
-app.use('/api/entries', entries);
+app.use('/api/entries', require('./routes/api/entries'));
+app.use('/api/users', require('./routes/api/users'));
+app.use('/api/auth', require('./routes/api/auth'));
 
 if(process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'));

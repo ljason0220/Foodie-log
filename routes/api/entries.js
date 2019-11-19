@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const auth = require('../../middleware/auth');
 
 const Entry = require('../../models/entry');
 
@@ -14,9 +15,9 @@ router.get('/', (req, res) => {
 
 //@route POST api/entries
 //@desc Create new entry
-//@access Public for now
+//@access Private
 
-router.post('/', (req, res) => {
+router.post('/', auth, (req, res) => {
     const newEntry = new Entry({
         entryId: req.body.entryId
     });
@@ -27,9 +28,9 @@ router.post('/', (req, res) => {
 
 //@route DELETE api/entries/:entryId
 //@desc Delete an entry
-//@access Public for now
+//@access Private
 
-router.delete('/:entryId', (req, res) => {
+router.delete('/:entryId', auth, (req, res) => {
     Entry.findById(req.params.entryId)
         .then(entry => entry.remove()
             .then(() =>  res.json({success: true})))
