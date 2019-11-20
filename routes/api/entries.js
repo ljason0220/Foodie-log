@@ -9,7 +9,7 @@ const Entry = require('../../models/entry');
 
 router.get('/', (req, res) => {
     Entry.find()
-        .sort({ userId: 1})
+        .sort({ added_date: -1})
         .then(entries => res.json(entries));
 });
 
@@ -19,7 +19,8 @@ router.get('/', (req, res) => {
 
 router.post('/', auth, (req, res) => {
     const newEntry = new Entry({
-        entryId: req.body.entryId
+        entryId: req.body.entryId,
+        userId: req.body.userId
     });
 
     newEntry.save()
@@ -36,7 +37,6 @@ router.delete('/:entryId', auth, (req, res) => {
             .then(() =>  res.json({success: true})))
         .catch(err => res.status(404).json({success: false}));
 });
-
 
 module.exports = router;
 

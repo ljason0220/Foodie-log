@@ -8,12 +8,12 @@ class EntryModal extends Component {
     state = {
         modal: false,
         entryId: '',
-        businessId: '',
         userId: ''
     }
 
     static propTypes = {
-        isAuthenticated: PropTypes.bool
+        isAuthenticated: PropTypes.bool,
+        userId: PropTypes.object
     };
 
     toggle = () => {
@@ -31,8 +31,7 @@ class EntryModal extends Component {
 
         const newEntry = {
             entryId: this.state.entryId,
-            businessId: this.state.businessId,
-            userId: this.state.userId
+            userId: this.props.userId
         }
 
         this.props.addEntry(newEntry);
@@ -85,7 +84,8 @@ class EntryModal extends Component {
 
 const mapStateToProps = (state) => ({
     entry: state.entry,
-    isAuthenticated: state.auth.isAuthenticated
+    isAuthenticated: state.auth.isAuthenticated,
+    userId: state.auth.user
 })
 
 export default connect(mapStateToProps, { addEntry })(EntryModal);

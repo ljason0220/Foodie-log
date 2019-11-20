@@ -6,11 +6,13 @@ const EntrySchema = new Schema({
         type: String,
         required: true
     },
-    userID: {
-        type: String
+    userId: {
+        type: String,
+        required: true
     },
-    businessID: {
-        type: String
+    added_date: {
+        type: Date,
+        default: Date.now
     }
 });
 
