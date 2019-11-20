@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, Form, FormGroup, Label, Input } from 'reactstrap';
 import { connect } from 'react-redux';
 import { addEntry } from '../actions/entryActions';
+import PropTypes from 'prop-types';
 
 class EntryModal extends Component {
     state = {
@@ -10,6 +11,10 @@ class EntryModal extends Component {
         businessId: '',
         userId: ''
     }
+
+    static propTypes = {
+        isAuthenticated: PropTypes.bool
+    };
 
     toggle = () => {
         this.setState({
@@ -38,11 +43,15 @@ class EntryModal extends Component {
     render() {
         return (
             <div>
+                { this.props.isAuthenticated ? 
                 <Button
                     color="dark"
                     style={{marginBottom: '2rem'}}
                     onClick={this.toggle}
-                >Add Entry</Button>
+                >Add Entry
+                </Button> : <h4 className="mb-3 ml-4">Log in to manage entries</h4>}
+
+
 
                 <Modal
                     isOpen={this.state.modal}
@@ -75,7 +84,8 @@ class EntryModal extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    entry: state.entry
+    entry: state.entry,
+    isAuthenticated: state.auth.isAuthenticated
 })
 
 export default connect(mapStateToProps, { addEntry })(EntryModal);

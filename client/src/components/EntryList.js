@@ -7,6 +7,12 @@ import PropTypes from 'prop-types';
 
 class EntryList extends Component {
 
+    static propTypes = {
+        getEntries: PropTypes.func.isRequired,
+        entry: PropTypes.object.isRequired,
+        isAuthenticated: PropTypes.bool
+    };
+
     componentDidMount() {
         this.props.getEntries();
     }
@@ -25,13 +31,14 @@ class EntryList extends Component {
                         {entries.map(({ _id, entryId }) => (
                             <CSSTransition key={_id} timeout={500} classNames="fade">
                                 <ListGroupItem>
-                                    <Button 
+                                    { this.props.isAuthenticated ? <Button 
                                         className="remove-btn"
                                         color="danger"
                                         size="sm"
                                         onClick={this.onDeleteClick.bind(this, _id)}
                                         >
-                                        &times;</Button>
+                                        &times;
+                                        </Button> : null}
                                     {entryId}
                                 </ListGroupItem>
                             </CSSTransition>
@@ -43,13 +50,9 @@ class EntryList extends Component {
     }
 }
 
-EntryList.propTypes = {
-    getEntries: PropTypes.func.isRequired,
-    entry: PropTypes.object.isRequired
-}
-
 const mapStateToProps = (state) => ({
-    entry: state.entry
+    entry: state.entry,
+    isAuthenticated: state.auth.isAuthenticated
 });
 
 export default connect(mapStateToProps, { getEntries, deleteEntry })(EntryList);
