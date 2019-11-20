@@ -48,7 +48,7 @@ class EntryModal extends Component {
                     style={{marginBottom: '2rem'}}
                     onClick={this.toggle}
                 >Add Entry
-                </Button> : <h4 className="mb-3 ml-4">Log in to manage entries</h4>}
+                </Button> : null}
 
 
 
@@ -60,19 +60,19 @@ class EntryModal extends Component {
                     <ModalBody>
                         <Form onSubmit={this.onSubmit}>
                             <FormGroup>
-                                <Label for="entry">Entry</Label>
+                                <Label for="entry">Name</Label>
                                 <Input 
                                     type="text"
                                     name="entryId"
                                     id="entry"
-                                    placeholder="Add Entry"
+                                    placeholder="Steak? Noodles?"
                                     onChange={this.onChange}
                                 />
                                 <Button
                                     color="dark"
                                     style={{marginTop: '2rem'}}
                                     block
-                                >Add Entry</Button>
+                                >Save</Button>
                             </FormGroup>
                         </Form>
                     </ModalBody>

@@ -1,12 +1,12 @@
 import axios from 'axios';
-import { GET_ENTRIES, ADD_ENTRY, DELETE_ENTRY, ENTRIES_LOADING } from './types';
+import { GET_ENTRIES, ADD_ENTRY, DELETE_ENTRY, ENTRIES_LOADING, WIPE_ENTRIES } from './types';
 import { tokenConfig } from './authActions';
 import { returnErrors } from './errorActions';
 
-export const getEntries = () => dispatch => {
+export const getEntries = (userId) => dispatch => {
     dispatch(setEntriesLoading());
     axios
-        .get('/api/entries')
+        .get(`/api/entries/${userId}`)
         .then(res => 
             dispatch({
                 type: GET_ENTRIES,
@@ -44,4 +44,10 @@ export const setEntriesLoading = () => {
     return {
         type: ENTRIES_LOADING
     }
+};
+
+export const wipeEntries = () => {
+    return {
+        type: WIPE_ENTRIES
+    };
 };

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import AppNavBar from './components/AppNavBar';
 import EntryList from './components/EntryList';
 import EntryModal from './components/entryModal';
+import IntroPage from './components/introPage';
 import { Container } from 'reactstrap';
 
 import { Provider } from 'react-redux';
@@ -24,6 +25,7 @@ class App extends Component {
           <AppNavBar />
           <Container>
             <EntryModal />
+            <IntroPage />
             <EntryList />
           </Container>
         </div>

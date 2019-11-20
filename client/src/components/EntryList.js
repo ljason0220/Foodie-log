@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Container, ListGroup, ListGroupItem, Button } from 'reactstrap';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { connect } from 'react-redux';
@@ -10,11 +10,14 @@ class EntryList extends Component {
     static propTypes = {
         getEntries: PropTypes.func.isRequired,
         entry: PropTypes.object.isRequired,
-        isAuthenticated: PropTypes.bool
+        isAuthenticated: PropTypes.bool,
+        userId: PropTypes.object
     };
 
-    componentDidMount() {
-        this.props.getEntries();
+    componentDidUpdate() {
+        if (!this.props.loaded && this.props.isAuthenticated && this.props.userId) {
+            this.props.getEntries(this.props.userId._id);
+        } 
     }
 
     onDeleteClick = (entryId) => {
@@ -24,8 +27,8 @@ class EntryList extends Component {
     render() {
         const { entries } = this.props.entry;
 
-        return(
-            <Container>  
+        const entryListFrag = (
+            <Fragment>
                 <ListGroup>
                     <TransitionGroup className="entry-list">
                         {entries.map(({ _id, entryId }) => (
@@ -45,6 +48,13 @@ class EntryList extends Component {
                         ))}
                     </TransitionGroup>
                 </ListGroup>
+            </Fragment>
+        );
+
+
+        return(
+            <Container>  
+                { this.props.isAuthenticated ? entryListFrag : null }
             </Container>
         );
     }
@@ -52,7 +62,9 @@ class EntryList extends Component {
 
 const mapStateToProps = (state) => ({
     entry: state.entry,
-    isAuthenticated: state.auth.isAuthenticated
+    isAuthenticated: state.auth.isAuthenticated,
+    userId: state.auth.user,
+    loaded: state.entry.loaded
 });
 
 export default connect(mapStateToProps, { getEntries, deleteEntry })(EntryList);

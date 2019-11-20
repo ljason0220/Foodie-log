@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { NavLink } from 'reactstrap';
 import { connect } from 'react-redux';
 import { logout } from '../../actions/authActions';
+import { wipeEntries } from '../../actions/entryActions';
 import PropTypes from 'prop-types';
 
 export class Logout extends Component {
@@ -12,7 +13,7 @@ export class Logout extends Component {
     render() {
         return(
             <Fragment>
-                <NavLink onClick={this.props.logout} href="#">
+                <NavLink onClick={(event) => { this.props.logout(); this.props.wipeEntries() }} href="#">
                     Logout
                 </NavLink>
             </Fragment>
@@ -22,5 +23,5 @@ export class Logout extends Component {
 
 export default connect(
     null,
-    { logout }
+    { logout, wipeEntries }
 )(Logout);

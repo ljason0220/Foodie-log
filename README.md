@@ -14,7 +14,7 @@ Roadmap
 - [ ] Move keys and jwtsecret to heroku env
 - [ ] Finalize name of project lol
 - [ ] Add domain to deployment
-- [ ] Entries user specific
+- [x] Entries user specific
 --------------------------------------------
 - [ ] Welcome landing page for first time users
 - [ ] Add images to entries

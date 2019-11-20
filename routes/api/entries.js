@@ -7,8 +7,8 @@ const Entry = require('../../models/entry');
 //@route GET api/entries
 //@desc Get all entries
 
-router.get('/', (req, res) => {
-    Entry.find()
+router.get('/:userId', (req, res) => {
+    Entry.find({ userId: req.params.userId })
         .sort({ added_date: -1})
         .then(entries => res.json(entries));
 });

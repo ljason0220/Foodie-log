@@ -1,8 +1,9 @@
-import { GET_ENTRIES, ADD_ENTRY, DELETE_ENTRY, ENTRIES_LOADING } from '../actions/types';
+import { GET_ENTRIES, ADD_ENTRY, DELETE_ENTRY, ENTRIES_LOADING, WIPE_ENTRIES } from '../actions/types';
 
 const initialState = {
     entries: [],
-    loading: false
+    loading: false,
+    loaded: false
 }
 
 export default function(state = initialState, action) {
@@ -11,7 +12,7 @@ export default function(state = initialState, action) {
             return {
                 ...state, 
                 entries: action.payload,
-                loading: false
+                loading: false,
             }
         case DELETE_ENTRY: 
             return {
@@ -26,7 +27,14 @@ export default function(state = initialState, action) {
         case ENTRIES_LOADING:
             return {
                 ...state, 
-                loading: true
+                loading: true,
+                loaded: true
+            }
+        case WIPE_ENTRIES:
+            return {
+                ...state,
+                entries: [],
+                loaded: false
             }
         default:
             return state;
