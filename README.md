@@ -1,6 +1,6 @@
 # Foodie-log
 
-Primarily a personal food diary site with social aspects planned
+Primarily a personal food diary site with social aspects planned  
 Currently deployed at https://foodie-log.herokuapp.com/
 
 Roadmap
