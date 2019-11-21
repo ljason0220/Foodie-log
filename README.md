@@ -11,7 +11,7 @@ Roadmap
 - [x] Deployed to Heroku
 - [x] User functionality
 --------------------------------------------
-- [ ] Move keys and jwtsecret to heroku env
+- [x] Move keys and jwtsecret to heroku env
 - [ ] Finalize name of project lol
 - [ ] Add domain to deployment
 - [x] Entries user specific

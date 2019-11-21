@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
-const config = require('config');
+const { MONGO_URI } = require('./config/default');
 
 const app = express();
 
@@ -9,7 +9,7 @@ const app = express();
 app.use(express.json());
 
 //Mongo URI
-const db = config.get('mongoURI');
+const db = MONGO_URI;
 
 //Connect to Mongo
 mongoose

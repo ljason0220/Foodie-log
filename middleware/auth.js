@@ -1,4 +1,4 @@
-const config = require('config');
+const { JWT_SECRET } = require('../config/default');
 const jwt = require('jsonwebtoken');
 
 function auth(req, res, next) {
@@ -8,7 +8,7 @@ function auth(req, res, next) {
         return res.status(401).json({ msg: 'No token, authorization denied' });
 
     try{
-        const decoded = jwt.verify(token, config.get('jwtSecret'));
+        const decoded = jwt.verify(token, JWT_SECRET);
 
         req.user = decoded;
         next();
