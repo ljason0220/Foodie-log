@@ -12,8 +12,9 @@ class IntroPage extends Component {
     render() {
         const introSection = (
             <Fragment>
-                <h1>Intro landing page here eventually</h1>
-                <h2>Register or login to see entries</h2>
+                <video className='video' autoPlay muted loop>
+                    <source src='../../api/video' type="video/mp4"/>
+                </video>
             </Fragment>
         );
 
