@@ -12,7 +12,7 @@ class IntroPage extends Component {
     render() {
         const introSection = (
             <Fragment>
-                <video className='video' autoPlay muted loop>
+                <video className='video' autoPlay muted loop playsinline>
                     <source src='../../api/video' type="video/mp4"/>
                 </video>
             </Fragment>
