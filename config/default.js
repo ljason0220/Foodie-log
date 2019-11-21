@@ -1,2 +1,2 @@
-export const MONGO_URI = process.env.MONGO_URI;
-export const JWT_SECRET = process.env.JWT_SECRET;
+module.exports.MONGO_URI = process.env.MONGO_URI;
+module.exports.JWT_SECRET = process.env.JWT_SECRET;
