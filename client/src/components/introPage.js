@@ -13,7 +13,7 @@ class IntroPage extends Component {
         const introSection = (
             <Fragment>
                 <video className='video' autoPlay muted loop playsinline>
-                    <source src='https://s3.eu-central-1.amazonaws.com/pipe.public.content/short.mp4' type="video/mp4"/>
+                    <source src='../../api/video' type="video/mp4"/>
                 </video>
             </Fragment>
         );
