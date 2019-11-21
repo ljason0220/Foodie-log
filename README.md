@@ -1,7 +1,8 @@
 # Foodie-log
 
 Primarily a personal food diary site with social aspects planned  
-Currently deployed at https://foodie-log.herokuapp.com/
+Currently deployed at https://foodie-log.herokuapp.com/  
+Full MERN stack with redux, reactstrap, bcrypt for password hashing, jsonwebtoken for auth
 
 Roadmap
 --------------------------------------------
@@ -12,11 +13,12 @@ Roadmap
 - [x] User functionality
 --------------------------------------------
 - [x] Move keys and jwtsecret to heroku env
-- [ ] Finalize name of project lol
-- [ ] Add domain to deployment
 - [x] Entries user specific
 --------------------------------------------
 - [ ] Welcome landing page for first time users
+- [ ] Finalize name of project lol
+- [ ] Add domain to deployment
+--------------------------------------------
 - [ ] Add images to entries
 - [ ] Yelp Fusion API searching to auto fill entries
 --------------------------------------------
