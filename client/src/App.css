@@ -34,3 +34,7 @@
     width: 100%;
     z-index: -1;
 }
+
+#navbar {
+    opacity: 0.6;
+}
