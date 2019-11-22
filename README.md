@@ -1,6 +1,6 @@
 # Foodie-log
 
-Primarily a personal food diary site with possible social aspects in the future
+Primarily a personal food diary site with possible social aspects in the future  
 Currently deployed at https://foodie-log.herokuapp.com/  
 Full MERN stack with redux, reactstrap, bcrypt, jsonwebtoken, AWS S3 
 
